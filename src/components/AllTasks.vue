@@ -1,6 +1,11 @@
 <template>
   <div class="all-tasks">
-    <TaskBox v-for="(task, index) in taskList" :key="index" :task="task" />
+    <TaskBox
+      v-for="(task, index) in taskList"
+      :key="index"
+      :description="task"
+      :taskListRemoveFn="taskListRemoveFn"
+    />
   </div>
 </template>
 
@@ -13,6 +18,10 @@ export default {
   props: {
     taskList: {
       type: Array,
+      required: true,
+    },
+    taskListRemoveFn: {
+      type: Function,
       required: true,
     },
   },

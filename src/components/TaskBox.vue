@@ -1,30 +1,38 @@
 <template>
   <div
     class="task-box"
-    :class="{ completed: taskHasCompleted }"
-    @click="task.hasCompleted = !task.hasCompleted"
+    :class="{ completed: hasCompleted }"
+    @click="hasCompleted = !hasCompleted"
   >
-    {{ task.description }}
+    {{ description }}
+    <CloseBox @click="removeTask()" />
   </div>
 </template>
 
 <script>
+import CloseBox from "./CloseBox.vue";
 export default {
+  components: { CloseBox },
   props: {
-    task: {
-      type: Object,
+    description: {
+      type: String,
       required: true,
-      default: function () {
-        return {
-          description: "Task Default",
-          hasCompleted: false,
-        };
-      },
+      default: "Task Default",
+    },
+    taskListRemoveFn: {
+      type: Function,
+      required: true,
     },
   },
-  computed: {
-    taskHasCompleted() {
-      return this.task.hasCompleted;
+  data() {
+    return {
+      hasCompleted: false,
+    };
+  },
+  methods: {
+    removeTask() {
+      console.log("ta saindo");
+      this.taskListRemoveFn(this.description);
     },
   },
 };
@@ -41,6 +49,11 @@ export default {
   color: rgba(255, 255, 255, 0.5);
   border-radius: 6px;
   box-shadow: inset 6px 0px rgba(0, 0, 0, 0.2);
+  user-select: none;
+}
+
+.task-box:hover {
+  transform: scale(105%);
 }
 
 .completed {

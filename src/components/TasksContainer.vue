@@ -1,6 +1,10 @@
 <template>
   <div class="tasks-container">
-    <component :is="chooseTasksComponent()" :taskList="taskList" />
+    <component
+      :is="chooseTasksComponent()"
+      :taskList="taskList"
+      :taskListRemoveFn="taskListRemoveFn"
+    />
   </div>
 </template>
 
@@ -15,6 +19,10 @@ export default {
   props: {
     taskList: {
       type: Array,
+      required: true,
+    },
+    taskListRemoveFn: {
+      type: Function,
       required: true,
     },
   },
@@ -34,5 +42,6 @@ export default {
 <style>
 .tasks-container {
   padding-top: 20px;
+  width: 75%;
 }
 </style>

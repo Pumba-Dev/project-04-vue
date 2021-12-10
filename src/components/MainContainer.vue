@@ -2,19 +2,8 @@
   <div class="main-container">
     <head-title />
     <progress-container />
-    <new-task-container />
-    <tasks-container
-      :taskList="[
-        { description: 'Minha Tarefa', hasCompleted: true },
-        { description: 'Minha Tarefa 2', hasCompleted: false },
-        { description: 'Minha Tarefa 3', hasCompleted: false },
-        { description: 'Minha Tarefa 3', hasCompleted: false },
-        { description: 'Minha Tarefa 3', hasCompleted: true },
-        { description: 'Minha Tarefa 3', hasCompleted: false },
-        { description: 'Minha Tarefa 3', hasCompleted: false },
-        { description: 'Minha Tarefa 3', hasCompleted: false },
-      ]"
-    />
+    <new-task-container :taskListIncludeFn="taskListInclude" />
+    <tasks-container :taskList="taskList" :taskListRemoveFn="taskListRemove" />
   </div>
 </template>
 
@@ -32,12 +21,21 @@ export default {
   },
   data() {
     return {
-      taskList: [],
+      taskList: ["testando"],
     };
   },
   methods: {
     taskListInclude(newTask) {
-      this.taskList << newTask;
+      if (newTask != "") this.taskList.push(newTask);
+    },
+    taskListRemove(taskDesc) {
+      let index = 0;
+      for (let task in this.taskList) {
+        if (task == taskDesc) {
+          this.taskList.splice(index, 1);
+        }
+        index++;
+      }
     },
   },
 };

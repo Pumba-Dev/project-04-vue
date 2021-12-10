@@ -25,8 +25,9 @@ export default {
   align-items: center;
   border: 1px solid white;
   border-radius: 5px;
-  width: 70vw;
+  width: 65vw;
   height: 20px;
+  user-select: none;
 }
 
 .task-progress {
@@ -35,6 +36,6 @@ export default {
   transform: translateX(-50%);
   text-align: center;
   color: white;
-  font-family: cursive;
+  font-family: sans-serif;
 }
 </style>
