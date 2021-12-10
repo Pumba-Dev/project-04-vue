@@ -3,7 +3,18 @@
     <head-title />
     <progress-container />
     <new-task-container />
-    <tasks-container :tasksList="[]" />
+    <tasks-container
+      :taskList="[
+        { description: 'Minha Tarefa', hasCompleted: true },
+        { description: 'Minha Tarefa 2', hasCompleted: false },
+        { description: 'Minha Tarefa 3', hasCompleted: false },
+        { description: 'Minha Tarefa 3', hasCompleted: false },
+        { description: 'Minha Tarefa 3', hasCompleted: true },
+        { description: 'Minha Tarefa 3', hasCompleted: false },
+        { description: 'Minha Tarefa 3', hasCompleted: false },
+        { description: 'Minha Tarefa 3', hasCompleted: false },
+      ]"
+    />
   </div>
 </template>
 
@@ -18,6 +29,16 @@ export default {
     ProgressContainer,
     NewTaskContainer,
     TasksContainer,
+  },
+  data() {
+    return {
+      taskList: [],
+    };
+  },
+  methods: {
+    taskListInclude(newTask) {
+      this.taskList << newTask;
+    },
   },
 };
 </script>

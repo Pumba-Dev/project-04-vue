@@ -1,6 +1,6 @@
 <template>
   <div class="tasks-container">
-    <component :is="chooseTasksComponent()" />
+    <component :is="chooseTasksComponent()" :taskList="taskList" />
   </div>
 </template>
 
@@ -13,14 +13,14 @@ export default {
     NoTaskMsg,
   },
   props: {
-    tasksList: {
+    taskList: {
       type: Array,
       required: true,
     },
   },
   computed: {
     haveTaskRegistered() {
-      return this.tasksList.length == 0 ? false : true;
+      return this.taskList.length == 0 ? false : true;
     },
   },
   methods: {
