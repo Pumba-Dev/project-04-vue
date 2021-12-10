@@ -1,11 +1,13 @@
 <template>
-  <div
-    class="task-box"
-    :class="{ completed: hasCompleted }"
-    @click="hasCompleted = !hasCompleted"
-  >
-    {{ description }}
-    <CloseBox @click="removeTask()" />
+  <div class="task-box-container">
+    <CloseBox @RemoveThisTask="taskListRemoveFn(task.desc)" />
+    <div
+      class="task-box"
+      :class="{ completed: hasCompleted }"
+      @click="makeTaskComplete()"
+    >
+      {{ task.desc }}
+    </div>
   </div>
 </template>
 
@@ -14,25 +16,27 @@ import CloseBox from "./CloseBox.vue";
 export default {
   components: { CloseBox },
   props: {
-    description: {
-      type: String,
+    task: {
+      type: Object,
       required: true,
-      default: "Task Default",
     },
     taskListRemoveFn: {
       type: Function,
       required: true,
     },
+    turnTaskCompletedFn: {
+      type: Function,
+      required: true,
+    },
   },
-  data() {
-    return {
-      hasCompleted: false,
-    };
+  computed: {
+    hasCompleted() {
+      return this.task.hasCompleted;
+    },
   },
   methods: {
-    removeTask() {
-      console.log("ta saindo");
-      this.taskListRemoveFn(this.description);
+    makeTaskComplete() {
+      this.turnTaskCompletedFn(this.task.desc);
     },
   },
 };
@@ -46,14 +50,14 @@ export default {
   height: 70px;
   width: 165px;
   background-color: rgba(250, 60, 60, 0.9);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
+  word-break: break-all;
   border-radius: 6px;
   box-shadow: inset 6px 0px rgba(0, 0, 0, 0.2);
-  user-select: none;
 }
 
-.task-box:hover {
-  transform: scale(105%);
+.task-box-container {
+  position: relative;
 }
 
 .completed {

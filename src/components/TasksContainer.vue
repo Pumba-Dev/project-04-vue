@@ -4,6 +4,7 @@
       :is="chooseTasksComponent()"
       :taskList="taskList"
       :taskListRemoveFn="taskListRemoveFn"
+      :turnTaskCompletedFn="turnTaskCompletedFn"
     />
   </div>
 </template>
@@ -22,6 +23,10 @@ export default {
       required: true,
     },
     taskListRemoveFn: {
+      type: Function,
+      required: true,
+    },
+    turnTaskCompletedFn: {
       type: Function,
       required: true,
     },

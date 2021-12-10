@@ -3,8 +3,9 @@
     <TaskBox
       v-for="(task, index) in taskList"
       :key="index"
-      :description="task"
+      :task="task"
       :taskListRemoveFn="taskListRemoveFn"
+      :turnTaskCompletedFn="turnTaskCompletedFn"
     />
   </div>
 </template>
@@ -21,6 +22,10 @@ export default {
       required: true,
     },
     taskListRemoveFn: {
+      type: Function,
+      required: true,
+    },
+    turnTaskCompletedFn: {
       type: Function,
       required: true,
     },

@@ -5,11 +5,9 @@
       class="new-task-input"
       placeholder="New Task?"
       v-model="taskDescriptionInput"
-      v-on:keyup.enter="taskListIncludeFn(taskDescriptionInput)"
+      v-on:keyup.enter="enterInput()"
     />
-    <div class="new-task-btn" @click="taskListIncludeFn(taskDescriptionInput)">
-      +
-    </div>
+    <div class="new-task-btn" @click="enterInput()">+</div>
   </div>
 </template>
 
@@ -24,6 +22,12 @@ export default {
     taskListIncludeFn: {
       type: Function,
       required: true,
+    },
+  },
+  methods: {
+    enterInput() {
+      this.taskListIncludeFn(this.taskDescriptionInput);
+      this.taskDescriptionInput = "";
     },
   },
 };

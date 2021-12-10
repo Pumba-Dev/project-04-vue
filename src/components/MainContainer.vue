@@ -1,13 +1,18 @@
 <template>
   <div class="main-container">
     <head-title />
-    <progress-container />
+    <progress-container :taskList="taskList" />
     <new-task-container :taskListIncludeFn="taskListInclude" />
-    <tasks-container :taskList="taskList" :taskListRemoveFn="taskListRemove" />
+    <tasks-container
+      :taskList="taskList"
+      :taskListRemoveFn="taskListRemove"
+      :turnTaskCompletedFn="turnTaskCompleted"
+    />
   </div>
 </template>
 
 <script>
+import Task from "./Task";
 import HeadTitle from "./HeadTitle.vue";
 import ProgressContainer from "./ProgressContainer.vue";
 import NewTaskContainer from "./NewTaskContainer.vue";
@@ -21,21 +26,32 @@ export default {
   },
   data() {
     return {
-      taskList: ["testando"],
+      taskList: [],
     };
   },
   methods: {
-    taskListInclude(newTask) {
-      if (newTask != "") this.taskList.push(newTask);
+    taskListInclude(newTaskDesc) {
+      if (newTaskDesc != "") this.taskList.push(new Task(newTaskDesc));
+    },
+    taskIndexInList(taskDesc) {
+      for (let index in this.taskList) {
+        if (this.taskList[index].desc == taskDesc) {
+          return index;
+        }
+      }
+      return -1;
     },
     taskListRemove(taskDesc) {
-      let index = 0;
-      for (let task in this.taskList) {
-        if (task == taskDesc) {
+      for (let index in this.taskList) {
+        if (this.taskList[index].desc == taskDesc) {
           this.taskList.splice(index, 1);
         }
-        index++;
       }
+    },
+    turnTaskCompleted(taskDesc) {
+      const taskIndex = this.taskIndexInList(taskDesc);
+      this.taskList[taskIndex].hasCompleted =
+        !this.taskList[taskIndex].hasCompleted;
     },
   },
 };

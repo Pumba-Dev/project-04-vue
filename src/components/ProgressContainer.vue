@@ -11,10 +11,25 @@ export default {
   components: {
     ProgressBar,
   },
-  data() {
-    return {
-      taskProgress: 80,
-    };
+  props: {
+    taskList: {
+      type: Array,
+      required: true,
+    },
+  },
+  computed: {
+    taskProgress() {
+      const totalOfTasks = this.taskList.length;
+      if (totalOfTasks == 0) return 0;
+      let totalOfCompletedTasks = 0;
+      for (let index in this.taskList) {
+        if (this.taskList[index].hasCompleted) {
+          totalOfCompletedTasks++;
+        }
+      }
+      const taskProgress = (totalOfCompletedTasks / totalOfTasks) * 100;
+      return taskProgress;
+    },
   },
 };
 </script>
