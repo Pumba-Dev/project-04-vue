@@ -1,5 +1,5 @@
 <template>
-  <div class="close-box" @click="removeTask()">x</div>
+  <div class="close-box" @click="removeTask()">X</div>
 </template>
 
 <script>
@@ -12,10 +12,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .close-box {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: black;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: rgb(0, 0, 0, 0.4);
   font-family: Monospace;
   font-size: 1rem;
   min-width: 20px;
@@ -27,11 +27,11 @@ export default {
   position: absolute;
   right: 5px;
   top: 5px;
-  user-select: none;
 }
 
 .close-box:hover {
   background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(0, 0, 0, 0.6);
   cursor: pointer;
 }
 </style>

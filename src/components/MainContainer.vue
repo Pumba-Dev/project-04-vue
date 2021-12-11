@@ -42,11 +42,10 @@ export default {
       return -1;
     },
     taskListRemove(taskDesc) {
-      for (let index in this.taskList) {
-        if (this.taskList[index].desc == taskDesc) {
-          this.taskList.splice(index, 1);
-        }
-      }
+      console.log(taskDesc);
+      const taskIndex = this.taskIndexInList(taskDesc);
+      console.log(taskIndex);
+      this.taskList.splice(taskIndex, 1);
     },
     turnTaskCompleted(taskDesc) {
       const taskIndex = this.taskIndexInList(taskDesc);

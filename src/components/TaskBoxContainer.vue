@@ -27,11 +27,6 @@ export default {
       required: true,
     },
   },
-  computed: {
-    hasCompleted() {
-      return this.task.hasCompleted;
-    },
-  },
   methods: {
     makeTaskComplete() {
       this.turnTaskCompletedFn(this.task.desc);

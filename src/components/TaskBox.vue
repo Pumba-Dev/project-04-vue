@@ -4,12 +4,20 @@
     :class="{ completed: hasCompleted }"
     @click="makeTaskComplete()"
   >
-    {{ task.desc }}
+    <TaskBoxDescription>
+      <span :style="{ 'text-decoration-line': sublimeTaskIfCompleted }">
+        {{ task.desc }}
+      </span>
+    </TaskBoxDescription>
   </div>
 </template>
 
 <script>
+import TaskBoxDescription from "./TaskBoxDescription";
 export default {
+  components: {
+    TaskBoxDescription,
+  },
   props: {
     task: {
       type: Object,
@@ -23,6 +31,10 @@ export default {
   computed: {
     hasCompleted() {
       return this.task.hasCompleted;
+    },
+    sublimeTaskIfCompleted() {
+      if (this.hasCompleted) return "line-through";
+      else return "";
     },
   },
   methods: {
@@ -49,6 +61,5 @@ export default {
 
 .completed {
   background-color: rgba(0, 255, 0, 0.4);
-  text-decoration-line: line-through;
 }
 </style>
