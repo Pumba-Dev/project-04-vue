@@ -27,7 +27,9 @@ export default {
           totalOfCompletedTasks++;
         }
       }
-      const taskProgress = (totalOfCompletedTasks / totalOfTasks) * 100;
+      const taskProgress = Math.floor(
+        (totalOfCompletedTasks / totalOfTasks) * 100
+      );
       return taskProgress;
     },
   },

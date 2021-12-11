@@ -1,6 +1,6 @@
 <template>
   <div class="all-tasks">
-    <TaskBox
+    <TaskBoxContainer
       v-for="(task, index) in taskList"
       :key="index"
       :task="task"
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import TaskBox from "./TaskBox.vue";
+import TaskBoxContainer from "./TaskBoxContainer.vue";
 export default {
   components: {
-    TaskBox,
+    TaskBoxContainer,
   },
   props: {
     taskList: {

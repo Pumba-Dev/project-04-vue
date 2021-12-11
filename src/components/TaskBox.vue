@@ -1,27 +1,18 @@
 <template>
-  <div class="task-box-container">
-    <CloseBox @RemoveThisTask="taskListRemoveFn(task.desc)" />
-    <div
-      class="task-box"
-      :class="{ completed: hasCompleted }"
-      @click="makeTaskComplete()"
-    >
-      {{ task.desc }}
-    </div>
+  <div
+    class="task-box"
+    :class="{ completed: hasCompleted }"
+    @click="makeTaskComplete()"
+  >
+    {{ task.desc }}
   </div>
 </template>
 
 <script>
-import CloseBox from "./CloseBox.vue";
 export default {
-  components: { CloseBox },
   props: {
     task: {
       type: Object,
-      required: true,
-    },
-    taskListRemoveFn: {
-      type: Function,
       required: true,
     },
     turnTaskCompletedFn: {
@@ -54,10 +45,6 @@ export default {
   word-break: break-all;
   border-radius: 6px;
   box-shadow: inset 6px 0px rgba(0, 0, 0, 0.2);
-}
-
-.task-box-container {
-  position: relative;
 }
 
 .completed {
