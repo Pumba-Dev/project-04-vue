@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import CloseBox from "./CloseBox.vue";
-import TaskBox from "./TaskBox.vue";
+import CloseBox from "../objects/CloseBox.vue";
+import TaskBox from "../objects/TaskBox.vue";
 export default {
   components: {
     CloseBox,

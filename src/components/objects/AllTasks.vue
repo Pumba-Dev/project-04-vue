@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import TaskBoxContainer from "./TaskBoxContainer.vue";
+import TaskBoxContainer from "../containers/TaskBoxContainer.vue";
 export default {
   components: {
     TaskBoxContainer,

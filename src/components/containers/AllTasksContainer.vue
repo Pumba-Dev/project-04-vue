@@ -1,6 +1,6 @@
 <template>
   <div class="tasks-container">
-    <component
+    <Component
       :is="chooseTasksComponent()"
       :taskList="taskList"
       :taskListRemoveFn="taskListRemoveFn"
@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import AllTasks from "./AllTasks.vue";
-import NoTaskMsg from "./NoTaskMsg.vue";
+import AllTasks from "../objects/AllTasks.vue";
+import NoTaskMsg from "../objects/NoTaskMsg.vue";
 export default {
   components: {
     AllTasks,

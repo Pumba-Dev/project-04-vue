@@ -1,9 +1,9 @@
 <template>
   <div class="main-container">
-    <head-title />
-    <progress-container :taskList="taskList" />
-    <new-task-container :taskListIncludeFn="taskListInclude" />
-    <tasks-container
+    <HeadTitle />
+    <ProgressContainer :taskList="taskList" />
+    <NewTaskContainer :taskListIncludeFn="taskListInclude" />
+    <AllTasksContainer
       :taskList="taskList"
       :taskListRemoveFn="taskListRemove"
       :turnTaskCompletedFn="turnTaskCompleted"
@@ -12,17 +12,17 @@
 </template>
 
 <script>
-import Task from "./Task";
-import HeadTitle from "./HeadTitle.vue";
-import ProgressContainer from "./ProgressContainer.vue";
-import NewTaskContainer from "./NewTaskContainer.vue";
-import TasksContainer from "./TasksContainer.vue";
+import Task from "../../class/Task";
+import HeadTitle from "../objects/HeadTitle.vue";
+import ProgressContainer from "../containers/ProgressContainer.vue";
+import NewTaskContainer from "../containers/NewTaskContainer.vue";
+import AllTasksContainer from "./AllTasksContainer.vue";
 export default {
   components: {
     HeadTitle,
     ProgressContainer,
     NewTaskContainer,
-    TasksContainer,
+    AllTasksContainer,
   },
   data() {
     return {
@@ -42,9 +42,7 @@ export default {
       return -1;
     },
     taskListRemove(taskDesc) {
-      console.log(taskDesc);
       const taskIndex = this.taskIndexInList(taskDesc);
-      console.log(taskIndex);
       this.taskList.splice(taskIndex, 1);
     },
     turnTaskCompleted(taskDesc) {

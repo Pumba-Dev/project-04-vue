@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MainContainer from "./components/MainContainer.vue";
+import MainContainer from "./components/containers/MainContainer.vue";
 export default {
   components: { MainContainer },
 };
